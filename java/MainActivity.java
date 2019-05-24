@@ -9,13 +9,11 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -25,8 +23,6 @@ import java.util.Set;
 
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
-import static com.example.mazeapp.apithread.apiout;
-import static java.lang.Boolean.FALSE;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -90,12 +86,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         if(!checkPermission()){
             openActivity();
+            //application code separate from the api starts here
             setContentView(R.layout.activity_main);
         }
         else{
             if(checkPermission()) requestPermissionAndContinue();
             else{
                 openActivity();
+                //application code separate from the api starts here
                 setContentView(R.layout.activity_main);
             }
         }
@@ -134,8 +132,6 @@ public class MainActivity extends AppCompatActivity {
                 ConThread = new ConnectThread(btdev, btsample.btadt); //creates connection from specified bt adapter to bt device
                 Thread athread = new Thread(ConThread);
                 athread.start(); //this has to start in another thread since thread closes after connection is established
-                //application code separate from the api starts here
-
             } else System.exit(0); //app closes if not paired to imu device
         }
     }

@@ -15,7 +15,6 @@ import java.util.Stack;
 
 import static com.example.mazeapp.frameproc.gesture;
 import static com.example.mazeapp.frameproc.received;
-import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
 public class GameView extends View {
